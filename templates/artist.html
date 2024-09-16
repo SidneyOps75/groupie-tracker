@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Artist.Name}} | Melodic Meetups</title>
+    <link rel="stylesheet" href="/static/css/artist.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">Melodic Meetups</a>
+            <div class="nav-links">
+                <a href="/" class="btn cta-button">Back Home</a>
+            </div>
+            <button class="menu-button">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section bg-gray-800">
+            <div class="container">
+                <div class="grid md-grid-cols-2 items-center gap-8">
+                    <!-- Band Info -->
+                    
+                    <div class="flex flex-col">
+                        <h2 class="text-3xl mb-6">Band Info</h2>
+                        <ul class="space-y-4">
+                            <li><strong class="text-pink-500">First Album:</strong> {{.Artist.FirstAlbum}}</li>
+                            <li><strong class="text-pink-500">Formation Year:</strong> {{.Artist.CreationDate}}</li>
+                            <li>
+                                <strong class="text-pink-500">Members:</strong>
+                                <ul class="list-disc list-inside ml-4">
+                                    {{range .Artist.Members}}
+                                    <li>{{.}}</li>
+                                    {{end}}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    
+        
+                    <!-- Album Card -->
+                    <center>
+                    <div class="album-image-container ">
+                        <img src="{{.Artist.Image}}" alt="{{.Artist.Name}}" class="album-image rounded-lg object-cover shadow-lg">
+                    </div>
+                    </center>
+                </div>
+            </div>
+        </section>
+
+        <section class="section bg-gray-900">
+            <div class="container">
+                <h2 class="text-3xl mb-8 text-center">Upcoming Concerts</h2>
+                <div class="grid md-grid-cols-2 lg-grid-cols-3">
+                    {{range $location, $dates := .Relation.DatesLocations}}
+                    <div class="bg-gray-800 rounded-lg p-6">
+                        <h3 class="text-xl font-semibold mb-4">{{$location}}</h3>
+                        <ul class="space-y-4">
+                            {{range $dates}}
+                            <li>
+                                <span class="icon">📅</span>
+                                <span>{{.}}</span>
+                            </li>
+                            {{end}}
+                        </ul>
+                        <br>
+                        <a href="#" class="btn">
+                            Book Tickets
+                        </a>
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="footer-title">Melodic Meetups</h3>
+                    <p class="text-gray-400">Discover your ultimate guide to the best concert experiences, where music meets magic. From selecting the perfect venue to scoring the best seats, this guide will help you maximize your enjoyment. Learn tips for navigating ticket sales, and making unforgettable memories.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><span class="icon">🔗</span>Facebook</a>
+                        <a href="#"><span class="icon">🔗</span>Twitter</a>
+                        <a href="#"><span class="icon">🔗</span>Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Melodic Meetups. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
